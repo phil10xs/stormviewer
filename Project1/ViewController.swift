@@ -24,7 +24,7 @@ class ViewController: UITableViewController {
         for item in items {
             if item.hasPrefix("nssl") {
                 pictures.append(item)
-                var sorted = pictures.sorted()
+                let sorted = pictures.sorted()
                  pictures = sorted
             }
         }
