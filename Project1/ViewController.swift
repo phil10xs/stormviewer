@@ -16,6 +16,8 @@ class ViewController: UITableViewController {
 
         title = "Storm Viewer"
         navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareTapped))
+        navigationItem.largeTitleDisplayMode = .always
 
         let fm = FileManager.default
         let path = Bundle.main.resourcePath!
@@ -24,7 +26,7 @@ class ViewController: UITableViewController {
         for item in items {
             if item.hasPrefix("nssl") {
                 pictures.append(item)
-                var sorted = pictures.sorted()
+                let sorted = pictures.sorted()
                  pictures = sorted
             }
         }
@@ -51,6 +53,12 @@ class ViewController: UITableViewController {
             navigationController?.pushViewController(vc, animated: true)
         }
             
+    }
+    
+    @objc func shareTapped() {
+        let vc = UIActivityViewController(activityItems: ["Hey!, Try out out Storm Viewer app. Get it for free. Stay Safer this Summer."], applicationActivities: [])
+        vc.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
+        present(vc, animated: true)
     }
 }
 
